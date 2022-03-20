@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <AssemblyName>AutoFixtureSetup.NSubstitute.Tests</AssemblyName>
+    <RootNamespace>AutoFixtureSetup.NSubstitute.Tests</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <OutputType>Library</OutputType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\src\NSubstitute\AutoFixtureSetup.NSubstitute.csproj" />
+    <ProjectReference Include="..\Core\AutoFixtureSetup.Tests.csproj" />
+  </ItemGroup>
+
+</Project>

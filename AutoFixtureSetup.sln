@@ -19,6 +19,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{EC725EE8-A
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "root", "root", "{CF3953FC-4377-46A0-8511-E64BBBFF2DFF}"
 	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
 		Directory.Build.props = Directory.Build.props
 		README.md = README.md
 		version.json = version.json
@@ -35,7 +36,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "unit", "unit", "{75188A62-8
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutoFixtureSetup.Moq", "src\Moq\AutoFixtureSetup.Moq.csproj", "{853D38ED-1134-4E28-909B-ED01C0C8F218}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoFixtureSetup.NSubstitute", "src\NSubstitute\AutoFixtureSetup.NSubstitute.csproj", "{8287DFFC-D782-4796-BC1C-2BCA88EBE9A1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutoFixtureSetup.NSubstitute", "src\NSubstitute\AutoFixtureSetup.NSubstitute.csproj", "{8287DFFC-D782-4796-BC1C-2BCA88EBE9A1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoFixtureSetup.Tests", "test\unit\Core\AutoFixtureSetup.Tests.csproj", "{C1E8875C-FD03-4BF4-B482-E67E85E86CD0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoFixtureSetup.NSubstitute.Tests", "test\unit\AutoFixtureSetup.NSubstitute.Tests\AutoFixtureSetup.NSubstitute.Tests.csproj", "{61D434BB-0153-46E9-AFBC-608D44B9BCCA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -55,6 +60,14 @@ Global
 		{8287DFFC-D782-4796-BC1C-2BCA88EBE9A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8287DFFC-D782-4796-BC1C-2BCA88EBE9A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8287DFFC-D782-4796-BC1C-2BCA88EBE9A1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C1E8875C-FD03-4BF4-B482-E67E85E86CD0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C1E8875C-FD03-4BF4-B482-E67E85E86CD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C1E8875C-FD03-4BF4-B482-E67E85E86CD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C1E8875C-FD03-4BF4-B482-E67E85E86CD0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61D434BB-0153-46E9-AFBC-608D44B9BCCA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61D434BB-0153-46E9-AFBC-608D44B9BCCA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61D434BB-0153-46E9-AFBC-608D44B9BCCA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61D434BB-0153-46E9-AFBC-608D44B9BCCA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -65,6 +78,8 @@ Global
 		{75188A62-8B57-48C6-9954-F8DE41A395C4} = {EC725EE8-ACCE-470E-A8EA-4C0A7E5CAED1}
 		{853D38ED-1134-4E28-909B-ED01C0C8F218} = {79DA1698-0CB7-4E23-A27A-FF856FD1B90B}
 		{8287DFFC-D782-4796-BC1C-2BCA88EBE9A1} = {79DA1698-0CB7-4E23-A27A-FF856FD1B90B}
+		{C1E8875C-FD03-4BF4-B482-E67E85E86CD0} = {75188A62-8B57-48C6-9954-F8DE41A395C4}
+		{61D434BB-0153-46E9-AFBC-608D44B9BCCA} = {75188A62-8B57-48C6-9954-F8DE41A395C4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {079BD3A3-8807-456F-A5E1-78CF0FE4222C}
