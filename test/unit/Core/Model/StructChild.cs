@@ -11,7 +11,7 @@ namespace AutoFixtureSetup.Tests.Model
     {
         public StructChild(string value)
         {
-            this._value = value;
+            _value = value;
         }
 
         public StructChild(string host, int port)
@@ -29,7 +29,7 @@ namespace AutoFixtureSetup.Tests.Model
                 host = $"[{host}]";
             }
 
-            this._value = host + ":" + port.ToString(CultureInfo.InvariantCulture);
+            _value = host + ":" + port.ToString(CultureInfo.InvariantCulture);
         }
 
         #region Properties
@@ -39,12 +39,12 @@ namespace AutoFixtureSetup.Tests.Model
         /// <summary>
         /// Returns the original value from the constructor.
         /// </summary>
-        public string Value => this._value;
+        public string Value => _value;
 
         /// <summary>
         /// Returns true if the host is set.
         /// </summary>
-        public bool HasValue => !string.IsNullOrEmpty(this.Value);
+        public bool HasValue => !string.IsNullOrEmpty(Value);
 
         /// <summary>
         /// Returns the value of the host part of the value. The port is removed if it was present.
@@ -55,7 +55,7 @@ namespace AutoFixtureSetup.Tests.Model
         {
             get
             {
-                GetParts(this._value, out var host, out var port);
+                GetParts(_value, out var host, out var port);
                 return host.ToString();
             }
         }
@@ -68,7 +68,7 @@ namespace AutoFixtureSetup.Tests.Model
         {
             get
             {
-                GetParts(this._value, out var host, out var port);
+                GetParts(_value, out var host, out var port);
 
                 if (!StringSegment.IsNullOrEmpty(port)
                     && int.TryParse(port.AsSpan().ToString(), NumberStyles.None, CultureInfo.InvariantCulture, out var p))
@@ -90,7 +90,7 @@ namespace AutoFixtureSetup.Tests.Model
         /// <returns>The value as normalized by <see cref="ToUriComponent"/>.</returns>
         public override string ToString()
         {
-            return this.ToUriComponent();
+            return ToUriComponent();
         }
 
         /// <summary>
@@ -100,23 +100,23 @@ namespace AutoFixtureSetup.Tests.Model
         /// <returns>The <see cref="StructChild"/> value formatted for use in a URI or HTTP header.</returns>
         public string ToUriComponent()
         {
-            if (string.IsNullOrEmpty(this._value))
+            if (string.IsNullOrEmpty(_value))
             {
                 return string.Empty;
             }
 
             int i;
-            for (i = 0; i < this._value.Length; ++i)
+            for (i = 0; i < _value.Length; ++i)
             {
-                if (!HostStringHelper.IsSafeHostStringChar(this._value[i]))
+                if (!HostStringHelper.IsSafeHostStringChar(_value[i]))
                 {
                     break;
                 }
             }
 
-            if (i != this._value.Length)
+            if (i != _value.Length)
             {
-                GetParts(this._value, out var host, out var port);
+                GetParts(_value, out var host, out var port);
 
                 var mapping = new IdnMapping();
                 var encoded = mapping.GetAscii(host.Buffer, host.Offset, host.Length);
@@ -126,7 +126,7 @@ namespace AutoFixtureSetup.Tests.Model
                     : string.Concat(encoded, ":", port.ToString());
             }
 
-            return this._value;
+            return _value;
         }
 
         /// <summary>
@@ -319,11 +319,11 @@ namespace AutoFixtureSetup.Tests.Model
         /// <returns><see langword="true" /> if they have the same value.</returns>
         public bool Equals(StructChild other)
         {
-            if (!this.HasValue && !other.HasValue)
+            if (!HasValue && !other.HasValue)
             {
                 return true;
             }
-            return string.Equals(this._value, other._value, StringComparison.OrdinalIgnoreCase);
+            return string.Equals(_value, other._value, StringComparison.OrdinalIgnoreCase);
         }
 
         /// <summary>
@@ -335,9 +335,9 @@ namespace AutoFixtureSetup.Tests.Model
         {
             if (ReferenceEquals(null, obj))
             {
-                return !this.HasValue;
+                return !HasValue;
             }
-            return obj is StructChild && this.Equals((StructChild)obj);
+            return obj is StructChild && Equals((StructChild)obj);
         }
 
         /// <summary>
@@ -346,7 +346,7 @@ namespace AutoFixtureSetup.Tests.Model
         /// <returns>The hash code as an <see cref="int"/>.</returns>
         public override int GetHashCode()
         {
-            return (this.HasValue ? StringComparer.OrdinalIgnoreCase.GetHashCode(this._value) : 0);
+            return (HasValue ? StringComparer.OrdinalIgnoreCase.GetHashCode(_value) : 0);
         }
 
         /// <summary>

@@ -16,13 +16,13 @@ namespace AutoFixtureSetup.NSubstitute
         /// <inheritdoc />
         protected override Lazy<T> Default => new(() =>
         {
-            if (this.IsMock)
+            if (IsMock)
             {
-                this.Fixture.Inject(Substitute.For<T>());
-                return this.Fixture.Freeze<T>();
+                Fixture.Inject(Substitute.For<T>());
+                return Fixture.Freeze<T>();
             }
 
-            return this.Fixture.Freeze<T>();
+            return Fixture.Freeze<T>();
         });
     }
 }

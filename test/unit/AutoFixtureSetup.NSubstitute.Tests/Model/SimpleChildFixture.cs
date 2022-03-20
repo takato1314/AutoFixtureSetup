@@ -83,10 +83,14 @@ namespace AutoFixtureSetup.NSubstitute.Tests.Model
                 instance.Number.Should().Be(1);
                 instance.ConcurrencyStamp.Should().Be("6041611a-40cc-4e49-8a20-407da6ef36b9");
 
-                Action returnMethod = () => instance.ReturnMethod();
-                returnMethod.Should().Throw<NotImplementedException>();
-                Action voidMethod = () => instance.VoidMethod();
-                voidMethod.Should().Throw<NotImplementedException>();
+                instance.Invoking(_ => _.ReturnMethod())
+                    .Should()
+                    .Throw<NotImplementedException>()
+                    .WithMessage("Not implemented on base");
+                instance.Invoking(_ => _.VoidMethod())
+                    .Should()
+                    .Throw<NotImplementedException>()
+                    .WithMessage("Not implemented on base");
             }
 
             return Task.CompletedTask;
@@ -117,8 +121,7 @@ namespace AutoFixtureSetup.NSubstitute.Tests.Model
                 instance.ConcurrencyStamp.Should().Be("6041611a-40cc-4e49-8a20-407da6ef36b9");
 
                 instance.ReturnMethod().Should().Be(instance.Name);
-                Action voidMethod = () => instance.VoidMethod();
-                voidMethod.Should().NotThrow();
+                instance.Invoking(_ => _.VoidMethod()).Should().NotThrow();
             }
 
             return Task.CompletedTask;
@@ -144,6 +147,7 @@ namespace AutoFixtureSetup.NSubstitute.Tests.Model
             {
                 instance.IsSubstitute().Should().BeFalse();
                 instance.Should().BeOfType<SimpleChild>();
+
                 instance.Name.Should().Be("OverridenText");
                 instance.Number.Should().Be(2);
                 instance.ConcurrencyStamp.ToString().Should().Be("6f55a677-c447-45f0-8e71-95c7b73fa889");
@@ -172,6 +176,7 @@ namespace AutoFixtureSetup.NSubstitute.Tests.Model
             {
                 instance.IsSubstitute().Should().BeTrue();
                 instance.Should().NotBeOfType<SimpleChild>();
+
                 instance.Name.Should().Be("OverridenText");
                 instance.Number.Should().Be(2);
                 instance.ConcurrencyStamp.ToString().Should().Be("6f55a677-c447-45f0-8e71-95c7b73fa889");

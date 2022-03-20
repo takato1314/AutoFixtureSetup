@@ -10,13 +10,13 @@
 
         public ComplexChild(string name)
         {
-            this.Name = name;
+            Name = name;
         }
         
         public ComplexChild(string name, int number)
         {
-            this.Name = name;
-            this.Number = number;
+            Name = name;
+            Number = number;
         }
 
         #endregion
@@ -45,12 +45,12 @@
         
         public string ReturnMethod()
         {
-            throw new NotImplementedException("Not implemented on class");
+            throw new NotImplementedException("Not implemented on ComplexChild");
         }
 
         public void VoidMethod()
         {
-            throw new NotImplementedException("Not implemented on class");
+            throw new NotImplementedException("Not implemented on ComplexChild");
         }
     }
 }

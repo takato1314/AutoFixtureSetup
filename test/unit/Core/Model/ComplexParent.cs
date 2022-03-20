@@ -6,13 +6,13 @@
         
         public ComplexParent(ComplexChild complexChild)
         {
-            this.ComplexChild = complexChild;
+            ComplexChild = complexChild;
         }
 
         public ComplexParent(ComplexChild complexChild, SimpleChild simpleChild)
         {
-            this.ComplexChild = complexChild;
-            this.SimpleChild = simpleChild;
+            ComplexChild = complexChild;
+            SimpleChild = simpleChild;
         }
 
         #endregion

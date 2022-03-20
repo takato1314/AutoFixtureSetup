@@ -32,7 +32,7 @@
 
 //        protected override Func<FixtureSetupOptions<ComplexParent>, FixtureSetupOptions<ComplexParent>> Setups =>
 //            options => options
-//                .Setup(_ => _.ComplexChild, new ComplexChildFixture(this.Fixture) { MyNumber = 777 }.Object)
+//                .Setup(_ => _.ComplexChild, new ComplexChildFixture(Fixture) { MyNumber = 777 }.Object)
 //                .Setup(_ => _.StructChild, StructChild);
 
 //        #endregion

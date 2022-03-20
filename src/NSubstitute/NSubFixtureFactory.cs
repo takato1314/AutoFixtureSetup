@@ -7,7 +7,7 @@ namespace AutoFixtureSetup.NSubstitute
     /// <inheritdoc />
     internal class NSubFixtureFactory : FixtureFactory
     {
-        public NSubFixtureFactory(IFixtureOptions? options) : base(options)
+        public NSubFixtureFactory(IFixtureOptions? options = null) : base(options)
         {
         }
 
