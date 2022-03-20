@@ -1,0 +1,72 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32210.238
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutoFixtureSetup", "src\Core\AutoFixtureSetup.csproj", "{DF61A553-DE9B-476B-8E3A-E5D9FE0BBC58}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{79DA1698-0CB7-4E23-A27A-FF856FD1B90B}"
+	ProjectSection(SolutionItems) = preProject
+		src\Directory.Build.props = src\Directory.Build.props
+		src\version.json = src\version.json
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{EC725EE8-ACCE-470E-A8EA-4C0A7E5CAED1}"
+	ProjectSection(SolutionItems) = preProject
+		test\Directory.Build.props = test\Directory.Build.props
+		test\GlobalSuppressions.cs = test\GlobalSuppressions.cs
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "root", "root", "{CF3953FC-4377-46A0-8511-E64BBBFF2DFF}"
+	ProjectSection(SolutionItems) = preProject
+		Directory.Build.props = Directory.Build.props
+		README.md = README.md
+		version.json = version.json
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "setting", "setting", "{C179AA2F-492C-4EEA-9921-5229CD7B2CBF}"
+	ProjectSection(SolutionItems) = preProject
+		test\setting\coverage.runsettings = test\setting\coverage.runsettings
+		test\setting\x64.runsettings = test\setting\x64.runsettings
+		test\setting\x86.runsettings = test\setting\x86.runsettings
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "unit", "unit", "{75188A62-8B57-48C6-9954-F8DE41A395C4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutoFixtureSetup.Moq", "src\Moq\AutoFixtureSetup.Moq.csproj", "{853D38ED-1134-4E28-909B-ED01C0C8F218}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoFixtureSetup.NSubstitute", "src\NSubstitute\AutoFixtureSetup.NSubstitute.csproj", "{8287DFFC-D782-4796-BC1C-2BCA88EBE9A1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DF61A553-DE9B-476B-8E3A-E5D9FE0BBC58}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF61A553-DE9B-476B-8E3A-E5D9FE0BBC58}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF61A553-DE9B-476B-8E3A-E5D9FE0BBC58}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF61A553-DE9B-476B-8E3A-E5D9FE0BBC58}.Release|Any CPU.Build.0 = Release|Any CPU
+		{853D38ED-1134-4E28-909B-ED01C0C8F218}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{853D38ED-1134-4E28-909B-ED01C0C8F218}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{853D38ED-1134-4E28-909B-ED01C0C8F218}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{853D38ED-1134-4E28-909B-ED01C0C8F218}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8287DFFC-D782-4796-BC1C-2BCA88EBE9A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8287DFFC-D782-4796-BC1C-2BCA88EBE9A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8287DFFC-D782-4796-BC1C-2BCA88EBE9A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8287DFFC-D782-4796-BC1C-2BCA88EBE9A1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{DF61A553-DE9B-476B-8E3A-E5D9FE0BBC58} = {79DA1698-0CB7-4E23-A27A-FF856FD1B90B}
+		{C179AA2F-492C-4EEA-9921-5229CD7B2CBF} = {EC725EE8-ACCE-470E-A8EA-4C0A7E5CAED1}
+		{75188A62-8B57-48C6-9954-F8DE41A395C4} = {EC725EE8-ACCE-470E-A8EA-4C0A7E5CAED1}
+		{853D38ED-1134-4E28-909B-ED01C0C8F218} = {79DA1698-0CB7-4E23-A27A-FF856FD1B90B}
+		{8287DFFC-D782-4796-BC1C-2BCA88EBE9A1} = {79DA1698-0CB7-4E23-A27A-FF856FD1B90B}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {079BD3A3-8807-456F-A5E1-78CF0FE4222C}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <AssemblyName>AutoFixtureSetup</AssemblyName>
+    <RootNamespace>AutoFixtureSetup</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <OutputType>Library</OutputType>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+</Project>
