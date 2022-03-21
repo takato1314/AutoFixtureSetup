@@ -20,7 +20,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "root", "root", "{CF3953FC-4377-46A0-8511-E64BBBFF2DFF}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
+		appveyor.yml = appveyor.yml
 		Directory.Build.props = Directory.Build.props
+		nuget.config = nuget.config
 		README.md = README.md
 		version.json = version.json
 	EndProjectSection
@@ -38,9 +40,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutoFixtureSetup.Moq", "src
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutoFixtureSetup.NSubstitute", "src\NSubstitute\AutoFixtureSetup.NSubstitute.csproj", "{8287DFFC-D782-4796-BC1C-2BCA88EBE9A1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoFixtureSetup.Tests", "test\unit\Core\AutoFixtureSetup.Tests.csproj", "{C1E8875C-FD03-4BF4-B482-E67E85E86CD0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutoFixtureSetup.Tests", "test\unit\Core\AutoFixtureSetup.Tests.csproj", "{C1E8875C-FD03-4BF4-B482-E67E85E86CD0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoFixtureSetup.NSubstitute.Tests", "test\unit\AutoFixtureSetup.NSubstitute.Tests\AutoFixtureSetup.NSubstitute.Tests.csproj", "{61D434BB-0153-46E9-AFBC-608D44B9BCCA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutoFixtureSetup.NSubstitute.Tests", "test\unit\NSubstitute\AutoFixtureSetup.NSubstitute.Tests.csproj", "{61D434BB-0153-46E9-AFBC-608D44B9BCCA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "scripts", "scripts", "{64E1E6B1-FC7E-45CA-9A10-B79D7386D100}"
+	ProjectSection(SolutionItems) = preProject
+		scripts\build.ps1 = scripts\build.ps1
+		scripts\push.ps1 = scripts\push.ps1
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

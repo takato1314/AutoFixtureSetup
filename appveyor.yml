@@ -1,0 +1,29 @@
+image: Visual Studio 2022
+
+environment:
+  NUGET_API_KEY:
+    secure: <secret>
+
+pull_requests:
+  do_not_increment_build_number: true
+
+skip_commits:
+  files:
+    - '**/*.md'
+    - '**/*.yml'
+    - '**/*.yaml'
+    - '**/*.txt'
+
+build_script:
+- ps: |
+    $env:BUILD_VERSION="git";
+    $env:BUILD_NUMBER=$env:APPVEYOR_BUILD_NUMBER;
+    & .\scripts\build.ps1 -t AppVeyor
+
+test: off
+
+artifacts:
+- path: artifacts\packages\*.nupkg
+  name: NuGet
+
+deploy: off

@@ -162,7 +162,7 @@ namespace AutoFixtureSetup.NSubstitute.Tests.Model
 
                 instance.Name.Should().Be("OverridenText");
                 instance.Number.Should().Be(2);
-                instance.Nullable = 456;
+                instance.Nullable.Should().Be(456);
                 instance.ConcurrencyStamp.ToString().Should().Be("6f55a677-c447-45f0-8e71-95c7b73fa889");
                 instance.StringCollection.Should().BeEmpty();
                 instance.DictionaryCollection[nameof(SimpleChild)].Should().NotBeEquivalentTo(sut.Fixtures[typeof(SimpleChildFixture)].Valid);
@@ -205,7 +205,7 @@ namespace AutoFixtureSetup.NSubstitute.Tests.Model
                 instance.Should().NotBeOfType<ComplexChild>();
                 instance.Name.Should().Be("OverridenText");
                 instance.Number.Should().Be(2);
-                instance.Nullable = 456;
+                instance.Nullable.Should().Be(456);
                 instance.ConcurrencyStamp.ToString().Should().Be("6f55a677-c447-45f0-8e71-95c7b73fa889");
                 instance.StringCollection.Should().BeEmpty();
                 instance.DictionaryCollection[nameof(SimpleChild)].Should().NotBeEquivalentTo(sut.Fixtures[typeof(SimpleChildFixture)].Valid);
