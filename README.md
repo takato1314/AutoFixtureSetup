@@ -1,5 +1,4 @@
 # AutoFixtureSetup
-[![.NET](https://github.com/takato1314/autofixture_extensions/actions/workflows/dotnet.yml/badge.svg?branch=main)](https://github.com/takato1314/autofixture_extensions/actions/workflows/dotnet.yml)
 
 Extending AutoFixture to automatically setup and optionally mock all calls on interfaces, abstract and concrete types.
 - Uses [IFixtureSetup](https://github.com/takato1314/AutoFixtureSetup/blob/main/src/Core/IFixtureSetup.cs) and [BaseFixtureSetup](https://github.com/takato1314/AutoFixtureSetup/blob/main/src/Core/BaseFixtureSetup.cs) extensibility point that allows users to setup mock fixtures based on fixed values if intended so.

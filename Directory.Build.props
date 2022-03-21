@@ -2,13 +2,19 @@
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Authors>Alex Soh</Authors>
+    <Copyright>Copyright 2022 by Alex Soh. All rights reserved.</Copyright>
+    <Description>Extending AutoFixture to automatically setup and optionally mock all calls on interfaces, abstract and concrete types.</Description>
     <GitVersionBaseDirectory>$(MSBuildThisFileDirectory)</GitVersionBaseDirectory>
     <PackageIcon>logo.png</PackageIcon>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageProjectUrl>https://github.com/takato1314/AutoFixtureSetup</PackageProjectUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageTags>AutoFixture;AutoFixtureSetup</PackageTags>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/takato1314/AutoFixtureSetup</RepositoryUrl>
-    <Summary>Autofixture setup template.</Summary>
+    <TargetsForTfmSpecificBuildOutput>$(TargetsForTfmSpecificBuildOutput);CopyProjectReferencesToPackage</TargetsForTfmSpecificBuildOutput>
   </PropertyGroup>
 
   <ItemGroup>
