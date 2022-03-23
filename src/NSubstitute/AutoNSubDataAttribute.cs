@@ -9,7 +9,7 @@ namespace AutoFixtureSetup.NSubstitute
     public class AutoNSubDataAttribute : AutoDataAttribute
     {
         /// <inheritdoc cref="AutoNSubDataAttribute"/>
-        public AutoNSubDataAttribute() : base(() => new NSubFixtureFactory(null).Create())
+        public AutoNSubDataAttribute() : base(() => new NSubFixtureFactory().Create())
         {
         }
 
