@@ -127,6 +127,8 @@ namespace AutoFixtureSetup.Tests
             i4.Should().NotBeSameAs(i7);
             i5.Should().NotBeSameAs(i7);
             i6.Should().NotBeSameAs(i7);
+            i7.Number.Should().Be(30);
+            i7.Name.Should().Be("RandomText30");
 
             return Task.CompletedTask;
         }

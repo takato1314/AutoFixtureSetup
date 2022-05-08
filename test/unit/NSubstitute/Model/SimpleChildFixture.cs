@@ -26,7 +26,7 @@ namespace AutoFixtureSetup.NSubstitute.Tests.Model
                 obj.ConcurrencyStamp = new Guid("6041611a-40cc-4e49-8a20-407da6ef36b9");
                 if (IsMock)
                 {
-                    obj.Configure().ReturnMethod().Returns("validSimpleChild");
+                    obj.Configure().ReturnMethod().Returns(_ => obj.Name);
                     obj.Configure().VoidMethod();
                 }
 
@@ -66,23 +66,19 @@ namespace AutoFixtureSetup.NSubstitute.Tests.Model
             var i2 = fixture.Create<SimpleChild>();
 
             // Assert
-            i1.Should().NotBeNull();
-            i1.Should().NotBeEquivalentTo(i0);
             i1.Should().BeSameAs(i2);
-
-            // Should be a mock
-            var instances = new List<SimpleChild> { i1, i2 };
             sut.IsMock.Should().BeFalse();
+            var instances = new List<SimpleChild> { i1, i2 };
             foreach (var instance in instances)
             {
                 instance.Should().NotBeNull();
                 instance.Should().NotBeEquivalentTo(i0);
                 instance.IsSubstitute().Should().BeFalse();
+                instance.Should().BeOfType<SimpleChild>();
 
                 instance.Name.Should().Be("validSimpleChild");
                 instance.Number.Should().Be(1);
                 instance.ConcurrencyStamp.Should().Be("6041611a-40cc-4e49-8a20-407da6ef36b9");
-
                 instance.Invoking(_ => _.ReturnMethod())
                     .Should()
                     .Throw<NotImplementedException>()
@@ -108,18 +104,19 @@ namespace AutoFixtureSetup.NSubstitute.Tests.Model
             var i2 = fixture.Create<SimpleChild>();
 
             // Assert
-            var instances = new List<SimpleChild> { i1, i2 };
+            i1.Should().BeSameAs(i2);
             sut.IsMock.Should().BeTrue();
+            var instances = new List<SimpleChild> { i1, i2 };
             foreach (var instance in instances)
             {
                 instance.Should().NotBeNull();
                 instance.Should().NotBeEquivalentTo(i0);
                 instance.IsSubstitute().Should().BeTrue();
+                instance.Should().NotBeOfType<SimpleChild>();
 
                 instance.Name.Should().Be("validSimpleChild");
                 instance.Number.Should().Be(1);
                 instance.ConcurrencyStamp.Should().Be("6041611a-40cc-4e49-8a20-407da6ef36b9");
-
                 instance.ReturnMethod().Should().Be(instance.Name);
                 instance.Invoking(_ => _.VoidMethod()).Should().NotThrow();
             }
@@ -134,6 +131,7 @@ namespace AutoFixtureSetup.NSubstitute.Tests.Model
             var sut = new SimpleChildFixture(fixture);
 
             // Act
+            var i0 = new SimpleChild();
             var i1 = sut.Valid;
             var i2 = fixture.Create<SimpleChild>();
 
@@ -142,15 +140,27 @@ namespace AutoFixtureSetup.NSubstitute.Tests.Model
             i1.ConcurrencyStamp = new Guid("6f55a677-c447-45f0-8e71-95c7b73fa889");
 
             // Assert
+            i1.Should().BeSameAs(i2);
+            sut.IsMock.Should().BeFalse();
             var instances = new List<SimpleChild> { i1, i2 };
             foreach (var instance in instances)
             {
+                instance.Should().NotBeNull();
+                instance.Should().NotBeEquivalentTo(i0);
                 instance.IsSubstitute().Should().BeFalse();
                 instance.Should().BeOfType<SimpleChild>();
 
                 instance.Name.Should().Be("OverridenText");
                 instance.Number.Should().Be(2);
                 instance.ConcurrencyStamp.ToString().Should().Be("6f55a677-c447-45f0-8e71-95c7b73fa889");
+                instance.Invoking(_ => _.ReturnMethod())
+                    .Should()
+                    .Throw<NotImplementedException>()
+                    .WithMessage("Not implemented on base");
+                instance.Invoking(_ => _.VoidMethod())
+                    .Should()
+                    .Throw<NotImplementedException>()
+                    .WithMessage("Not implemented on base");
             }
 
             return Task.CompletedTask;
@@ -163,6 +173,7 @@ namespace AutoFixtureSetup.NSubstitute.Tests.Model
             var sut = new SimpleChildFixture(fixture, true);
 
             // Act
+            var i0 = new SimpleChild();
             var i1 = sut.Valid;
             var i2 = fixture.Create<SimpleChild>();
 
@@ -171,16 +182,62 @@ namespace AutoFixtureSetup.NSubstitute.Tests.Model
             i1.ConcurrencyStamp = new Guid("6f55a677-c447-45f0-8e71-95c7b73fa889");
 
             // Assert
+            i1.Should().BeSameAs(i2);
+            sut.IsMock.Should().BeTrue();
             var instances = new List<SimpleChild> { i1, i2 };
             foreach (var instance in instances)
             {
+                instance.Should().NotBeNull();
+                instance.Should().NotBeEquivalentTo(i0);
                 instance.IsSubstitute().Should().BeTrue();
                 instance.Should().NotBeOfType<SimpleChild>();
 
                 instance.Name.Should().Be("OverridenText");
                 instance.Number.Should().Be(2);
                 instance.ConcurrencyStamp.ToString().Should().Be("6f55a677-c447-45f0-8e71-95c7b73fa889");
+                instance.ReturnMethod().Should().Be(instance.Name);
+                instance.Invoking(_ => _.VoidMethod()).Should().NotThrow();
             }
+
+            return Task.CompletedTask;
+        }
+
+        [Theory, AutoNSubData]
+        public Task GetDependency_ShouldReturnSameConcreteType(IFixture fixture)
+        {
+            // Arrange
+            var sut = new SimpleChildFixture(fixture);
+
+            // Act
+            var i0 = new SimpleChild();
+            var i1 = sut.Valid;
+            var i2 = sut.Get<SimpleChild>();
+
+            // Assert
+            i2.IsSubstitute().Should().BeFalse();
+            i2.Should().NotBeEquivalentTo(i0);
+            i2.Should().BeSameAs(i1);
+            i2.Should().BeOfType<SimpleChild>();
+
+            return Task.CompletedTask;
+        }
+
+        [Theory, AutoNSubData]
+        public Task GetDependency_ShouldReturnSameMockType(IFixture fixture)
+        {
+            // Arrange
+            var sut = new SimpleChildFixture(fixture, true);
+
+            // Act
+            var i0 = new SimpleChild();
+            var i1 = sut.Valid;
+            var i2 = sut.Get<SimpleChild>();
+
+            // Assert
+            i2.IsSubstitute().Should().BeTrue();
+            i2.Should().NotBeEquivalentTo(i0);
+            i2.Should().BeSameAs(i1);
+            i2.Should().NotBeOfType<SimpleChild>();
 
             return Task.CompletedTask;
         }

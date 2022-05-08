@@ -67,7 +67,7 @@ namespace AutoFixtureSetup
         /// Depending on the value of <see cref="IsMock"/>, the created fixture object maybe a mock object or not.
         /// </summary>
         protected virtual Lazy<T> Default => new(() => Fixture.Freeze<T>());
-        
+
         /// <summary>
         /// Resolve all dependencies and register <see cref="Valid"/> as the default fixture for type <see cref="T"/>.
         /// </summary>

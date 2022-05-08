@@ -1,4 +1,6 @@
 ﻿using AutoFixture;
+using AutoFixtureSetup.Extensions;
+using Castle.DynamicProxy;
 using NSubstitute;
 
 namespace AutoFixtureSetup.NSubstitute
@@ -12,14 +14,24 @@ namespace AutoFixtureSetup.NSubstitute
         protected NSubFixtureSetup(IFixture fixture, bool? isMock) : base(fixture, isMock)
         {
         }
-        
+
+        private static T? _instance;
         /// <inheritdoc />
         protected override Lazy<T> Default => new(() =>
         {
             if (IsMock)
             {
-                Fixture.Inject(Substitute.For<T>());
-                return Fixture.Freeze<T>();
+                var ctor = typeof(T).GetConstructors().OrderBy(x => x.GetParameters().Length).FirstOrDefault();
+                if (ctor == null)
+                {
+                    throw new InvalidProxyConstructorArgumentsException("Could not find a constructor to initialize object.", null, typeof(T));
+                }
+
+                var args = ctor.GetParameters();
+                var argObjs = args.Select(arg => Fixture.Freeze(arg.ParameterType)).ToArray();
+
+                _instance ??= Substitute.For<T>(argObjs);
+                Fixture.Inject(_instance);
             }
 
             return Fixture.Freeze<T>();
